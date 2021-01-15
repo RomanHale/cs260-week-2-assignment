@@ -1,0 +1,25 @@
+FUNCTIONS
+peek() - same as for a queue, this takes a pointer in a linked list as an arg, uses that pointer to access the node it points to's own pointer to the next node
+
+add(new_node,x) - this takes a node and a location as args. this location 'x' may be a number as in a literal numbered list, or it may be a value stored in the linked list.
+  this functionality will be expressed as seek_value() and seek_position().
+  this function calls either seek_value() or seek_position(), and I may split up add() into add_byvalue() and add_bypos() in the future. It takes the node and stores the pointer of the node. 
+  it sets the node's new pointer to be a pointer to the new_node. new_node's pointer is set to be the other node's stored pointer.
+
+seek_value() - calls peek() on the 'front' of the list and checks the value stored in the node. 
+  if it doesn't match the specified value, peek() is called on the pointer to the next node, and so on until the value is found.
+  if peek() returns NULL, then we exit with an error message. otherwise, return a pointer to the desired node.
+
+seek_position() - starts a counter and increments every time peek() is called, starting with 'front' and stopping when either the desired position number is reached or peek() returns NULL (in which case we exit with an error message again).
+  returns the pointer.
+
+remove(x) - x is a location described above in add() and is found by seek_value() or seek_position(). 
+  ##NOTE THAT YOU SPECIFY THE LOCATION ONE NODE ABOVE THE DESIRED REMOVAL##
+  remove() may be broken up into remove_byvalue() and remove_bypos() in the future.
+  remove takes the pointer returned by seek_value() or seek_position(), accesses the node's pointer to the node which is to be deleted,
+  and copies this prior node, the node that is to be deleted, and the successor node's pointers. the prior node has its stored pointer set to be a pointer to the successor node.
+  the memory location holding the data for the node that is to be deleted can be accessed by its pointer which was copied on lines 19-20. This memory can be freed up.
+
+VALUES
+you only need to know one thing, though these functions do have internal, temporary saved values which the functions uncover, use, then no longer need once they're done iterating.
+front - a pointer to the front of your linked list
