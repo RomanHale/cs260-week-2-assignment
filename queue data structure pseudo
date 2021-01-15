@@ -1,0 +1,24 @@
+FUNCTIONS
+enqueue() - takes a value or a node as an argument and places it at the end of the queue, realizing it as the new "end" of the queue
+dequeue() - copies the frontmost node, removes it from the queue, setting the secondmost node to be the new "front" of the queue. returns the copy
+peek()- takes 'front' or 'end' as arguments, which will be further defined in the values section. returns the value stored at that position
+
+
+
+
+VALUES
+int front- stores the position or a pointer to the frontmost node
+int end- stored the position or a pointer to the backmost node
+
+to access things like the "secondmost node," this would be similar to taking 'front+1' as its position in an array.
+if this is a linked list, then peek() will return the stored pointer, 
+which means we can use peek() on each returned pointer until reaching the back of the list, which would be the queue's front.
+we could then have an additional function find_successor() which would play out as follows:
+find successor()
+  current_pointer=end;
+  while(peek(current_pointer)!=NULL) //only the end has a NULL pointer, so this'll stop just before the end
+  do:
+    current_pointer=peek(current_pointer);
+  return current_pointer;
+ 
+ I know that strays a bit from pseudocode, but I felt it necessary in this case.
